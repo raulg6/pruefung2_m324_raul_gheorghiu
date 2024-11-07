@@ -1,0 +1,25 @@
+name: AI Code Reviewer
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+permissions: write-all
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: AI Code Reviewer
+        uses: your-username/ai-code-reviewer@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatisch vorhanden
+          OPENAI_API_KEY: ${{ secrets.API_KEY_AUFGABE5 }}  # API Key aus GitHub Secrets
+          OPENAI_API_MODEL: "gpt-3.5-turbo"  # Sie können auch "gpt-4" verwenden
+          with-comment: true  # Option zum Hinzufügen von Kommentaren
+          exclude: "**/*.json, **/*.md"  # Optional: Ausschluss von Dateien (z.B. JSON und MD)

@@ -25,9 +25,15 @@ jobs:
 
       - name: Format code
         run: npm run format-check
+      
+      - name: Format code (if necessary)
+        run: npm run format -- --write
 
       - name: Run tests
         run: npm test
+
+      - name: Use secret API key
+        run: echo ${{ secrets.API_KEY_AUFGABE5 }}
 
       - name: Run Super Linter for security checks
         uses: github/super-linter@v4
