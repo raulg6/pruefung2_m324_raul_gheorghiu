@@ -7,24 +7,35 @@ on:
 
 jobs:
   lint-format-test:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v14
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run linter
         run: npm run lint
 
-      - name: Format code
+      - name: Check code formatting
         run: npm run format-check
+
+      - name: Fix code formatting (if necessary)
+        run: npm run format -- --write # Formatieren der Dateien
 
       - name: Run tests
         run: npm test
+
+      - name: Use secret API key
+        run: echo ${{ secrets.API_KEY_AUFGABE5 }}
+
+      - name: Run Super Linter for security checks
+        uses: github/super-linter@v4
+        env:
+          RUN_LOCAL: true
