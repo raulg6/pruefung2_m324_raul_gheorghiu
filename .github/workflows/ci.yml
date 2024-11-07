@@ -27,7 +27,7 @@ jobs:
         run: npm run format-check
 
       - name: Fix code formatting (if necessary)
-        run: npm run format -- --write  # Formatieren der Dateien
+        run: npm run format -- --write # Formatieren der Dateien
 
       - name: Run tests
         run: npm test
