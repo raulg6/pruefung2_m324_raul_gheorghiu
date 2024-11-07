@@ -23,11 +23,11 @@ jobs:
       - name: Run linter
         run: npm run lint
 
-      - name: Format code
+      - name: Check code formatting
         run: npm run format-check
-      
-      - name: Format code (if necessary)
-        run: npm run format -- --write
+
+      - name: Fix code formatting (if necessary)
+        run: npm run format -- --write  # Formatieren der Dateien
 
       - name: Run tests
         run: npm test
